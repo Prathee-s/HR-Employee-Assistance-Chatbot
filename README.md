@@ -1,4 +1,4 @@
-# AI-Powered HR & Employee Assistance Chatbot (Java edition)
+# AI-Powered HR & Employee Assistance Chatbot
 
 Java 17 · Spring Boot 3 · MySQL · HTML/CSS/JS · LLM API (Anthropic Messages API) · JWT auth
 
