@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HR Assistant - Sign in</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="login-card">
+      <h1>🤝 HR Assistant</h1>
+      <p>Sign in with your company email</p>
+      <form id="loginForm">
+        <label>Email <input id="email" type="email" required placeholder="you@company.com"></label>
+        <label>Password <input id="password" type="password" required></label>
+        <button type="submit">Sign in</button>
+      </form>
+      <div class="error" id="err"></div>
+      <div class="hint">Demo logins:<br>Employee - prathibha@company.com / password123<br>HR - hr@company.com / password123</div>
+    </div>
+  </div>
+  <script>
+    if (localStorage.getItem('token')) location.href = 'index.html';
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const errEl = document.getElementById('err');
+      errEl.textContent = '';
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (!res.ok) { errEl.textContent = data.error || 'Login failed'; return; }
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('employee', JSON.stringify(data.employee));
+        location.href = data.employee.role === 'HR' ? 'hr.html' : 'index.html';
+      } catch { errEl.textContent = 'Could not reach the server.'; }
+    });
+  </script>
+</body>
+</html>

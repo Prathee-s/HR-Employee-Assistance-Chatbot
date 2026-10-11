@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HR Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div><h1>🤝 HR Assistant</h1><small id="who"></small></div>
+      <div class="links">
+        <button id="newChat" title="Start a new conversation">New chat</button>
+        <a href="#" id="hrLink" style="display:none">HR dashboard</a>
+        <button id="logout">Log out</button>
+      </div>
+    </header>
+    <main id="chat" aria-live="polite"></main>
+    <div id="chips">
+      <button class="chip">How many leave days do I have?</button>
+      <button class="chip">Apply for leave next Monday</button>
+      <button class="chip">What's the WFH policy?</button>
+      <button class="chip">Show me the holiday calendar</button>
+    </div>
+    <form id="form">
+      <input id="input" autocomplete="off" maxlength="1000" placeholder="Ask about leave, attendance, holidays, policies..." required>
+      <button type="submit" id="send">Send</button>
+    </form>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
